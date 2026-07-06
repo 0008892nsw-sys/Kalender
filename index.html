@@ -8,7 +8,6 @@
   :root{
     --navy-900:#0b1f3a;
     --navy-800:#12294d;
-    --navy-700:#1a3a66;
     --navy-100:#e8edf5;
     --accent:#2f6fed;
     --accent-dark:#1f4fb0;
@@ -73,8 +72,6 @@
     background:var(--navy-800);
     color:#fff;
     font-weight:500;
-    cursor:pointer;
-    user-select:none;
   }
   table.jadwal thead th.minggu{ background:var(--red-strong); }
   table.jadwal thead th .hari{ display:block; font-size:10px; opacity:.85; font-weight:400; }
@@ -83,16 +80,10 @@
     background:var(--navy-100);
     text-align:left; font-weight:600; color:var(--navy-900);
     z-index:1;
-  }
-  table.jadwal td.jabatan-col{
-    position:sticky; left:130px;
-    background:var(--navy-100);
-    text-align:left; color:var(--text-muted); font-weight:400; font-size:12px;
-    z-index:1;
+    min-width:130px;
   }
   table.jadwal th:first-child{ position:sticky; left:0; z-index:2; min-width:130px;}
-  table.jadwal th:nth-child(2){ position:sticky; left:130px; z-index:2; min-width:110px; cursor:default;}
-  table.jadwal td.day-cell{ min-width:46px; }
+  table.jadwal td.day-cell{ min-width:44px; }
   table.jadwal td.day-cell.weekend-red{ background:var(--red-bg); }
   .badge{ display:inline-block; padding:2px 8px; border-radius:3px; font-weight:600; font-size:12px; }
   .badge.A{ background:var(--a-bg); color:var(--a-text); }
@@ -100,37 +91,19 @@
   .badge.C{ background:var(--c-bg); color:var(--c-text); }
   .badge.OFF{ background:var(--off-bg); color:var(--off-text); }
 
-  .rekap-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:12px; }
-  .rekap-item{ border:1px solid var(--border); border-radius:4px; padding:12px 14px; background:var(--navy-100); }
-  .rekap-item .nama{ font-weight:700; color:var(--navy-900); display:block; margin-bottom:4px; }
-  .rekap-item .detail{ color:var(--text-muted); font-size:13px; }
+  tr.tugas-row td.nama-col{ background:var(--accent); color:#fff; }
+  td.tugas-cell{ cursor:pointer; }
+  td.tugas-cell:hover{ background:var(--navy-100); }
+  .dot{
+    display:inline-block;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--accent);
+  }
 
-  form.tugas-form{ display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; margin-bottom:18px; }
-  form.tugas-form .field{ display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--text-muted); }
-  form.tugas-form input, form.tugas-form select{
-    padding:8px 10px; border:1px solid var(--border); border-radius:4px;
-    font-size:13px; font-family:inherit; min-width:160px;
-  }
-  form.tugas-form input[type=text]{ min-width:220px; }
-  form.tugas-form button{
-    background:var(--accent); color:#fff; border:none; padding:9px 18px;
-    border-radius:4px; font-size:13px; font-weight:600; cursor:pointer;
-  }
-  form.tugas-form button:hover{ background:var(--accent-dark); }
-  form.tugas-form button:disabled{ opacity:.6; cursor:not-allowed; }
+  .rekap-list{ font-size:13px; line-height:1.9; }
+  .rekap-list b{ color:var(--navy-900); }
 
-  table.tugas-table{ border-collapse:collapse; width:100%; font-size:13px; }
-  table.tugas-table th, table.tugas-table td{ border:1px solid var(--border); padding:8px 10px; text-align:left; }
-  table.tugas-table th{
-    background:var(--navy-100); color:var(--navy-900); font-weight:600; font-size:12px; text-transform:uppercase;
-  }
-  .tag-jenis{ display:inline-block; padding:2px 8px; border-radius:3px; font-size:12px; font-weight:600; background:var(--a-bg); color:var(--a-text); }
-  .btn-hapus{
-    background:none; border:1px solid var(--red-strong); color:var(--red-strong);
-    padding:4px 10px; border-radius:4px; font-size:12px; cursor:pointer;
-  }
-  .btn-hapus:hover{ background:var(--red-bg); }
-  .empty-note{ color:var(--text-muted); font-size:13px; font-style:italic; }
   .hint{ font-size:12px; color:var(--text-muted); margin-top:8px; }
   .loading{ padding:40px; text-align:center; color:var(--text-muted); }
   .error-box{
@@ -140,6 +113,72 @@
   .setup-note{
     background:#fff8e1; border:1px solid #f0c93b; color:#7a5c00;
     padding:12px 16px; border-radius:4px; font-size:13px; margin-bottom:16px;
+  }
+  .empty-note{ color:var(--text-muted); font-size:13px; font-style:italic; }
+
+  /* Notepad */
+  .notepad-form{ display:flex; gap:10px; margin-bottom:14px; }
+  .notepad-form input{
+    flex:1; padding:9px 12px; border:1px solid var(--border); border-radius:4px; font-size:13px; font-family:inherit;
+  }
+  .notepad-form button{
+    background:var(--accent); color:#fff; border:none; padding:9px 18px;
+    border-radius:4px; font-size:13px; font-weight:600; cursor:pointer;
+  }
+  .notepad-form button:hover{ background:var(--accent-dark); }
+  ul.notepad-list{ list-style:none; margin:0; padding:0; }
+  ul.notepad-list li{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:1px solid var(--border);
+    padding:9px 4px;
+    font-size:13px;
+  }
+  ul.notepad-list li:last-child{ border-bottom:none; }
+  .btn-hapus-kecil{
+    background:none; border:1px solid var(--red-strong); color:var(--red-strong);
+    padding:3px 9px; border-radius:4px; font-size:11px; cursor:pointer; flex-shrink:0; margin-left:10px;
+  }
+  .btn-hapus-kecil:hover{ background:var(--red-bg); }
+
+  /* Modal */
+  .modal-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(11,31,58,.55);
+    align-items:center; justify-content:center;
+    z-index:100;
+  }
+  .modal-backdrop.show{ display:flex; }
+  .modal-box{
+    background:#fff;
+    border-radius:8px;
+    padding:22px;
+    width:360px;
+    max-width:90vw;
+    max-height:85vh;
+    overflow-y:auto;
+  }
+  .modal-box h3{ margin:0 0 4px 0; font-size:16px; color:var(--navy-900); }
+  .modal-box .modal-sub{ font-size:12px; color:var(--text-muted); margin-bottom:14px; }
+  .modal-box .field{ margin-bottom:12px; display:flex; flex-direction:column; gap:5px; }
+  .modal-box label{ font-size:12px; color:var(--text-muted); }
+  .modal-box select, .modal-box input{
+    padding:8px 10px; border:1px solid var(--border); border-radius:4px; font-size:13px; font-family:inherit;
+  }
+  .modal-box .btn-row{ display:flex; gap:8px; margin-top:10px; }
+  .modal-box button{
+    border:none; padding:9px 16px; border-radius:4px; font-size:13px; font-weight:600; cursor:pointer;
+  }
+  .btn-primary{ background:var(--accent); color:#fff; flex:1; }
+  .btn-primary:hover{ background:var(--accent-dark); }
+  .btn-secondary{ background:var(--navy-100); color:var(--text); }
+  .existing-tugas-item{
+    display:flex; justify-content:space-between; align-items:center;
+    border:1px solid var(--border); border-radius:4px; padding:8px 10px; margin-bottom:8px; font-size:12px;
+  }
+  .tag-jenis{
+    display:inline-block; padding:2px 7px; border-radius:3px; font-size:11px; font-weight:600;
+    background:var(--a-bg); color:var(--a-text); margin-bottom:3px;
   }
 </style>
 </head>
@@ -160,52 +199,64 @@
   <div class="card">
     <h2>Jadwal Shift</h2>
     <div id="jadwalWrap" class="loading">Memuat data jadwal dari spreadsheet...</div>
-    <div class="hint">Klik pada tanggal di header untuk menandai / membatalkan tanggal merah (libur nasional).</div>
+    <div class="hint">Klik kotak pada baris "Tugas" untuk menambah / melihat tugas di tanggal tersebut.</div>
   </div>
 
   <div class="card">
-    <h2>Rekap Shift per Karyawan</h2>
+    <h2>Rekap Shift</h2>
     <div id="rekapWrap" class="loading">Memuat rekap...</div>
   </div>
 
   <div class="card">
-    <h2>Tambah Tugas</h2>
-    <form class="tugas-form" id="formTugas">
-      <div class="field">
-        <label for="inpTanggal">Tanggal</label>
-        <input type="date" id="inpTanggal" required>
-      </div>
-      <div class="field">
-        <label for="inpJenis">Jenis</label>
-        <select id="inpJenis" required>
-          <option value="Kunjungan KC">Kunjungan KC</option>
-          <option value="Kunjungan Audit">Kunjungan Audit</option>
-          <option value="Tugas">Tugas</option>
-          <option value="Lainnya">Lainnya</option>
-        </select>
-      </div>
-      <div class="field" style="flex:1;">
-        <label for="inpKeterangan">Keterangan</label>
-        <input type="text" id="inpKeterangan" placeholder="Opsional">
-      </div>
-      <button type="submit" id="btnSubmitTugas">Tambah Tugas</button>
+    <h2>Notepad</h2>
+    <form class="notepad-form" id="formNotepad">
+      <input type="text" id="inpCatatan" placeholder="Catat pekerjaan kecil yang belum selesai..." required>
+      <button type="submit">Tambah</button>
     </form>
-    <div id="tugasWrap" class="loading">Memuat daftar tugas...</div>
+    <div id="notepadWrap" class="loading">Memuat catatan...</div>
   </div>
 
 </main>
 
+<!-- Modal Tugas -->
+<div class="modal-backdrop" id="modalTugas">
+  <div class="modal-box">
+    <h3>Tugas</h3>
+    <div class="modal-sub" id="modalTanggalLabel"></div>
+
+    <div id="existingTugasList"></div>
+
+    <div class="field">
+      <label for="modalJenis">Jenis</label>
+      <select id="modalJenis">
+        <option value="Kunjungan KC">Kunjungan KC</option>
+        <option value="Kunjungan Audit">Kunjungan Audit</option>
+        <option value="Tugas">Tugas</option>
+        <option value="Lainnya">Lainnya</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="modalKeterangan">Keterangan (opsional)</label>
+      <input type="text" id="modalKeterangan" placeholder="Contoh: cek stok gudang">
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" id="btnTambahTugasModal">Tambah</button>
+      <button class="btn-secondary" id="btnTutupModal">Tutup</button>
+    </div>
+  </div>
+</div>
+
 <script>
   // =====================================================================
   // WAJIB DIISI: tempel URL Web App hasil Deploy Google Apps Script di sini
-  // Contoh: 'https://script.google.com/macros/s/AKfycbx.../exec'
   // =====================================================================
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2GFrRDk4v0nJwPqKo9RbSKxfEwRixdz05qT4rpkKXhWGcfYS9R_f7UHh0NSZ_oMi5/exec';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBccVW8lxdPM0PnG25Vc-0H7_lJdOD-GOk34wFPEntxUKd9_HuYouCA4iC7vtkeUZH/exec';
 
   var NAMA_HARI = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
   var NAMA_BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-  var state = { jadwal: null, tugas: [], libur: [] };
+  var state = { jadwal: null, tugas: [], notepad: [] };
+  var modalDay = null;
 
   function pad2(n){ return n < 10 ? '0' + n : '' + n; }
   function dateStrFor(day){
@@ -231,11 +282,11 @@
         if (data.error) { showError(data.error); return; }
         state.jadwal = data.jadwal;
         state.tugas = data.tugas;
-        state.libur = data.libur;
+        state.notepad = data.notepad;
         renderSubtitle();
         renderJadwal();
         renderRekap();
-        renderTugas();
+        renderNotepad();
       })
       .catch(function(err){ showError(err.message || err); });
   }
@@ -243,8 +294,7 @@
   function callAction(payload){
     return fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      // pakai text/plain supaya browser tidak melakukan CORS preflight
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // hindari CORS preflight
       body: JSON.stringify(payload)
     }).then(function(res){ return res.json(); });
   }
@@ -259,35 +309,43 @@
       NAMA_BULAN[state.jadwal.bulan - 1] + ' ' + state.jadwal.tahun;
   }
 
-  function isLibur(day){
-    return state.libur.indexOf(dateStrFor(day)) > -1;
+  function tugasForDate(dateStr){
+    return state.tugas.filter(function(t){ return t.tanggal === dateStr; });
   }
 
   function renderJadwal(){
     var j = state.jadwal;
     var html = '<div class="table-scroll"><table class="jadwal"><thead><tr>';
-    html += '<th>Nama</th><th>Jabatan</th>';
+    html += '<th>Nama</th>';
     for (var d = 1; d <= j.numDays; d++){
       var dow = new Date(j.tahun, j.bulan - 1, d).getDay();
       var isSunday = (dow === 0);
-      var libur = isLibur(d);
-      var cls = (isSunday || libur) ? 'minggu' : '';
-      html += '<th class="' + cls + '" onclick="onToggleLibur(' + d + ')" title="Klik untuk toggle tanggal merah">' +
+      html += '<th class="' + (isSunday ? 'minggu' : '') + '">' +
               d + '<span class="hari">' + NAMA_HARI[dow] + '</span></th>';
     }
     html += '</tr></thead><tbody>';
 
     j.employees.forEach(function(emp){
-      html += '<tr><td class="nama-col">' + escapeHtml(emp.nama) + '</td><td class="jabatan-col">' + escapeHtml(emp.jabatan) + '</td>';
+      html += '<tr><td class="nama-col">' + escapeHtml(emp.nama) + '</td>';
       for (var d2 = 1; d2 <= j.numDays; d2++){
         var shift = emp.shifts[d2-1] || '';
         var dow2 = new Date(j.tahun, j.bulan - 1, d2).getDay();
-        var weekendCls = (dow2 === 0 || isLibur(d2)) ? 'weekend-red' : '';
+        var weekendCls = (dow2 === 0) ? 'weekend-red' : '';
         var badge = shift ? '<span class="badge ' + shift.replace(/[^A-Z]/g,'') + '">' + shift + '</span>' : '';
         html += '<td class="day-cell ' + weekendCls + '">' + badge + '</td>';
       }
       html += '</tr>';
     });
+
+    // baris khusus "Tugas"
+    html += '<tr class="tugas-row"><td class="nama-col">Tugas</td>';
+    for (var d3 = 1; d3 <= j.numDays; d3++){
+      var dateStr = dateStrFor(d3);
+      var count = tugasForDate(dateStr).length;
+      html += '<td class="day-cell tugas-cell" onclick="openModal(' + d3 + ')">' +
+              (count > 0 ? '<span class="dot"></span>' : '') + '</td>';
+    }
+    html += '</tr>';
 
     html += '</tbody></table></div>';
     document.getElementById('jadwalWrap').innerHTML = html;
@@ -295,77 +353,117 @@
 
   function renderRekap(){
     var j = state.jadwal;
-    var html = '<div class="rekap-grid">';
+    var html = '<div class="rekap-list">';
     j.employees.forEach(function(emp){
       var counts = { A:0, B:0, C:0, OFF:0 };
       emp.shifts.forEach(function(s){ if (counts.hasOwnProperty(s)) counts[s]++; });
-      html += '<div class="rekap-item"><span class="nama">' + escapeHtml(emp.nama) + '</span>' +
-        '<span class="detail">' + counts.A + ' shift A, ' + counts.B + ' shift B, ' + counts.C + ' shift C, ' + counts.OFF + ' off</span></div>';
+      html += '<div><b>' + escapeHtml(emp.nama) + '</b> = ' +
+        counts.A + ' shift A, ' + counts.B + ' shift B, ' + counts.C + ' shift C, ' + counts.OFF + ' off.</div>';
     });
     html += '</div>';
     document.getElementById('rekapWrap').innerHTML = html;
   }
 
-  function renderTugas(){
-    if (!state.tugas.length){
-      document.getElementById('tugasWrap').innerHTML = '<p class="empty-note">Belum ada tugas ditambahkan.</p>';
+  function renderNotepad(){
+    if (!state.notepad.length){
+      document.getElementById('notepadWrap').innerHTML = '<p class="empty-note">Belum ada catatan.</p>';
       return;
     }
-    var html = '<table class="tugas-table"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th></th></tr></thead><tbody>';
-    state.tugas.forEach(function(t){
-      html += '<tr><td>' + escapeHtml(t.tanggal) + '</td>' +
-        '<td><span class="tag-jenis">' + escapeHtml(t.jenis) + '</span></td>' +
-        '<td>' + escapeHtml(t.keterangan || '-') + '</td>' +
-        '<td><button class="btn-hapus" onclick="onHapusTugas(' + t.row + ')">Hapus</button></td></tr>';
+    var html = '<ul class="notepad-list">';
+    state.notepad.forEach(function(n){
+      html += '<li><span>' + escapeHtml(n.catatan) + '</span>' +
+        '<button class="btn-hapus-kecil" onclick="onHapusNotepad(' + n.row + ')">Hapus</button></li>';
     });
-    html += '</tbody></table>';
-    document.getElementById('tugasWrap').innerHTML = html;
+    html += '</ul>';
+    document.getElementById('notepadWrap').innerHTML = html;
   }
 
-  function onToggleLibur(day){
-    if (!checkSetup()) return;
+  // ---------- Modal Tugas ----------
+  function openModal(day){
+    modalDay = day;
     var dateStr = dateStrFor(day);
-    callAction({ action: 'toggleLibur', tanggal: dateStr })
-      .then(function(data){
-        state.jadwal = data.jadwal;
-        state.tugas = data.tugas;
-        state.libur = data.libur;
-        renderJadwal();
-        renderRekap();
-      })
-      .catch(function(err){ alert('Gagal update: ' + err.message); });
+    document.getElementById('modalTanggalLabel').textContent =
+      day + ' ' + NAMA_BULAN[state.jadwal.bulan - 1] + ' ' + state.jadwal.tahun;
+
+    var existing = tugasForDate(dateStr);
+    var html = '';
+    if (existing.length){
+      existing.forEach(function(t){
+        html += '<div class="existing-tugas-item"><div>' +
+          '<span class="tag-jenis">' + escapeHtml(t.jenis) + '</span><br>' +
+          escapeHtml(t.keterangan || '-') +
+          '</div><button class="btn-hapus-kecil" onclick="onHapusTugasModal(' + t.row + ')">Hapus</button></div>';
+      });
+    } else {
+      html = '<p class="empty-note">Belum ada tugas di tanggal ini.</p>';
+    }
+    document.getElementById('existingTugasList').innerHTML = html;
+    document.getElementById('modalKeterangan').value = '';
+    document.getElementById('modalTugas').classList.add('show');
   }
 
-  function onHapusTugas(rowIndex){
-    if (!checkSetup()) return;
-    callAction({ action: 'deleteTugas', row: rowIndex })
-      .then(function(data){
-        state.tugas = data.tugas;
-        renderTugas();
-      })
-      .catch(function(err){ alert('Gagal hapus: ' + err.message); });
+  function closeModal(){
+    document.getElementById('modalTugas').classList.remove('show');
+    modalDay = null;
   }
 
-  document.getElementById('formTugas').addEventListener('submit', function(e){
-    e.preventDefault();
-    if (!checkSetup()) return;
-    var tanggal = document.getElementById('inpTanggal').value;
-    var jenis = document.getElementById('inpJenis').value;
-    var keterangan = document.getElementById('inpKeterangan').value;
-    if (!tanggal){ alert('Tanggal wajib diisi.'); return; }
+  document.getElementById('btnTutupModal').addEventListener('click', closeModal);
+  document.getElementById('modalTugas').addEventListener('click', function(e){
+    if (e.target === this) closeModal();
+  });
 
-    var btn = document.getElementById('btnSubmitTugas');
+  document.getElementById('btnTambahTugasModal').addEventListener('click', function(){
+    if (!checkSetup() || modalDay === null) return;
+    var dateStr = dateStrFor(modalDay);
+    var jenis = document.getElementById('modalJenis').value;
+    var keterangan = document.getElementById('modalKeterangan').value;
+    var btn = this;
     btn.disabled = true;
-    callAction({ action: 'addTugas', tanggal: tanggal, jenis: jenis, keterangan: keterangan })
+    callAction({ action: 'addTugas', tanggal: dateStr, jenis: jenis, keterangan: keterangan })
       .then(function(data){
         state.tugas = data.tugas;
-        renderTugas();
-        document.getElementById('inpTanggal').value = '';
-        document.getElementById('inpKeterangan').value = '';
+        renderJadwal();
+        openModal(modalDay); // refresh isi modal
       })
       .catch(function(err){ alert('Gagal tambah tugas: ' + err.message); })
       .finally(function(){ btn.disabled = false; });
   });
+
+  function onHapusTugasModal(rowIndex){
+    if (!checkSetup()) return;
+    callAction({ action: 'deleteTugas', row: rowIndex })
+      .then(function(data){
+        state.tugas = data.tugas;
+        renderJadwal();
+        openModal(modalDay);
+      })
+      .catch(function(err){ alert('Gagal hapus: ' + err.message); });
+  }
+
+  // ---------- Notepad ----------
+  document.getElementById('formNotepad').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!checkSetup()) return;
+    var catatan = document.getElementById('inpCatatan').value.trim();
+    if (!catatan) return;
+    callAction({ action: 'addNotepad', catatan: catatan })
+      .then(function(data){
+        state.notepad = data.notepad;
+        renderNotepad();
+        document.getElementById('inpCatatan').value = '';
+      })
+      .catch(function(err){ alert('Gagal simpan catatan: ' + err.message); });
+  });
+
+  function onHapusNotepad(rowIndex){
+    if (!checkSetup()) return;
+    callAction({ action: 'deleteNotepad', row: rowIndex })
+      .then(function(data){
+        state.notepad = data.notepad;
+        renderNotepad();
+      })
+      .catch(function(err){ alert('Gagal hapus catatan: ' + err.message); });
+  }
 
   loadAll();
 </script>
