@@ -1,324 +1,234 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <base target="_top">
-  <meta charset="utf-8">
-  <style>
-    :root{
-      --navy-900:#0b1f3a;
-      --navy-800:#12294d;
-      --navy-700:#1a3a66;
-      --navy-100:#e8edf5;
-      --accent:#2f6fed;
-      --accent-dark:#1f4fb0;
-      --bg:#f3f5f9;
-      --card:#ffffff;
-      --border:#dbe1ea;
-      --text:#1c2b3a;
-      --text-muted:#5b6b80;
-      --red-bg:#fdecec;
-      --red-text:#b3261e;
-      --red-strong:#d64545;
-      --a-bg:#e3edff; --a-text:#1f4fb0;
-      --b-bg:#e3f7ee; --b-text:#1f8a5b;
-      --c-bg:#fff3e0; --c-text:#b5690a;
-      --off-bg:#eceff3; --off-text:#5b6b80;
-    }
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
-      font-family:'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-    header.topbar{
-      background:var(--navy-900);
-      color:#fff;
-      padding:20px 28px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-    header.topbar h1{
-      margin:0;
-      font-size:20px;
-      font-weight:600;
-      letter-spacing:.3px;
-    }
-    header.topbar .subtitle{
-      font-size:13px;
-      color:#b9c6de;
-    }
-    main{
-      max-width:1400px;
-      margin:0 auto;
-      padding:24px;
-    }
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:6px;
-      padding:20px;
-      margin-bottom:24px;
-    }
-    .card h2{
-      margin:0 0 16px 0;
-      font-size:15px;
-      font-weight:600;
-      color:var(--navy-900);
-      text-transform:uppercase;
-      letter-spacing:.5px;
-      border-left:4px solid var(--accent);
-      padding-left:10px;
-    }
-    .table-scroll{
-      overflow-x:auto;
-      border:1px solid var(--border);
-      border-radius:4px;
-    }
-    table.jadwal{
-      border-collapse:collapse;
-      width:100%;
-      font-size:13px;
-    }
-    table.jadwal th, table.jadwal td{
-      border:1px solid var(--border);
-      padding:6px 8px;
-      text-align:center;
-      white-space:nowrap;
-    }
-    table.jadwal thead th{
-      background:var(--navy-800);
-      color:#fff;
-      font-weight:500;
-      cursor:pointer;
-      user-select:none;
-    }
-    table.jadwal thead th.minggu, table.jadwal thead th.libur{
-      background:var(--red-strong);
-    }
-    table.jadwal thead th .hari{
-      display:block;
-      font-size:10px;
-      opacity:.85;
-      font-weight:400;
-    }
-    table.jadwal thead th:first-child, table.jadwal thead th:nth-child(2){
-      cursor:default;
-    }
-    table.jadwal td.nama-col{
-      position:sticky;
-      left:0;
-      background:var(--navy-100);
-      text-align:left;
-      font-weight:600;
-      color:var(--navy-900);
-      z-index:1;
-    }
-    table.jadwal td.jabatan-col{
-      position:sticky;
-      left:130px;
-      background:var(--navy-100);
-      text-align:left;
-      color:var(--text-muted);
-      font-weight:400;
-      font-size:12px;
-      z-index:1;
-    }
-    table.jadwal th:first-child{ position:sticky; left:0; z-index:2; min-width:130px;}
-    table.jadwal th:nth-child(2){ position:sticky; left:130px; z-index:2; min-width:110px;}
-    table.jadwal td.day-cell{
-      min-width:46px;
-    }
-    table.jadwal td.day-cell.weekend-red{
-      background:var(--red-bg);
-    }
-    .badge{
-      display:inline-block;
-      padding:2px 8px;
-      border-radius:3px;
-      font-weight:600;
-      font-size:12px;
-    }
-    .badge.A{ background:var(--a-bg); color:var(--a-text); }
-    .badge.B{ background:var(--b-bg); color:var(--b-text); }
-    .badge.C{ background:var(--c-bg); color:var(--c-text); }
-    .badge.OFF{ background:var(--off-bg); color:var(--off-text); }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalender BDG026</title>
+<style>
+  :root{
+    --navy-900:#0b1f3a;
+    --navy-800:#12294d;
+    --navy-700:#1a3a66;
+    --navy-100:#e8edf5;
+    --accent:#2f6fed;
+    --accent-dark:#1f4fb0;
+    --bg:#f3f5f9;
+    --card:#ffffff;
+    --border:#dbe1ea;
+    --text:#1c2b3a;
+    --text-muted:#5b6b80;
+    --red-bg:#fdecec;
+    --red-strong:#d64545;
+    --a-bg:#e3edff; --a-text:#1f4fb0;
+    --b-bg:#e3f7ee; --b-text:#1f8a5b;
+    --c-bg:#fff3e0; --c-text:#b5690a;
+    --off-bg:#eceff3; --off-text:#5b6b80;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  header.topbar{
+    background:var(--navy-900);
+    color:#fff;
+    padding:20px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  header.topbar h1{ margin:0; font-size:20px; font-weight:600; letter-spacing:.3px; }
+  header.topbar .subtitle{ font-size:13px; color:#b9c6de; }
+  main{ max-width:1400px; margin:0 auto; padding:24px; }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:20px;
+    margin-bottom:24px;
+  }
+  .card h2{
+    margin:0 0 16px 0;
+    font-size:15px;
+    font-weight:600;
+    color:var(--navy-900);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    border-left:4px solid var(--accent);
+    padding-left:10px;
+  }
+  .table-scroll{ overflow-x:auto; border:1px solid var(--border); border-radius:4px; }
+  table.jadwal{ border-collapse:collapse; width:100%; font-size:13px; }
+  table.jadwal th, table.jadwal td{
+    border:1px solid var(--border);
+    padding:6px 8px;
+    text-align:center;
+    white-space:nowrap;
+  }
+  table.jadwal thead th{
+    background:var(--navy-800);
+    color:#fff;
+    font-weight:500;
+    cursor:pointer;
+    user-select:none;
+  }
+  table.jadwal thead th.minggu{ background:var(--red-strong); }
+  table.jadwal thead th .hari{ display:block; font-size:10px; opacity:.85; font-weight:400; }
+  table.jadwal td.nama-col{
+    position:sticky; left:0;
+    background:var(--navy-100);
+    text-align:left; font-weight:600; color:var(--navy-900);
+    z-index:1;
+  }
+  table.jadwal td.jabatan-col{
+    position:sticky; left:130px;
+    background:var(--navy-100);
+    text-align:left; color:var(--text-muted); font-weight:400; font-size:12px;
+    z-index:1;
+  }
+  table.jadwal th:first-child{ position:sticky; left:0; z-index:2; min-width:130px;}
+  table.jadwal th:nth-child(2){ position:sticky; left:130px; z-index:2; min-width:110px; cursor:default;}
+  table.jadwal td.day-cell{ min-width:46px; }
+  table.jadwal td.day-cell.weekend-red{ background:var(--red-bg); }
+  .badge{ display:inline-block; padding:2px 8px; border-radius:3px; font-weight:600; font-size:12px; }
+  .badge.A{ background:var(--a-bg); color:var(--a-text); }
+  .badge.B{ background:var(--b-bg); color:var(--b-text); }
+  .badge.C{ background:var(--c-bg); color:var(--c-text); }
+  .badge.OFF{ background:var(--off-bg); color:var(--off-text); }
 
-    .rekap-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
-      gap:12px;
-    }
-    .rekap-item{
-      border:1px solid var(--border);
-      border-radius:4px;
-      padding:12px 14px;
-      background:var(--navy-100);
-    }
-    .rekap-item .nama{
-      font-weight:700;
-      color:var(--navy-900);
-      display:block;
-      margin-bottom:4px;
-    }
-    .rekap-item .detail{
-      color:var(--text-muted);
-      font-size:13px;
-    }
+  .rekap-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:12px; }
+  .rekap-item{ border:1px solid var(--border); border-radius:4px; padding:12px 14px; background:var(--navy-100); }
+  .rekap-item .nama{ font-weight:700; color:var(--navy-900); display:block; margin-bottom:4px; }
+  .rekap-item .detail{ color:var(--text-muted); font-size:13px; }
 
-    form.tugas-form{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      align-items:flex-end;
-      margin-bottom:18px;
-    }
-    form.tugas-form .field{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      font-size:12px;
-      color:var(--text-muted);
-    }
-    form.tugas-form input, form.tugas-form select{
-      padding:8px 10px;
-      border:1px solid var(--border);
-      border-radius:4px;
-      font-size:13px;
-      font-family:inherit;
-      min-width:160px;
-    }
-    form.tugas-form input[type=text]{ min-width:220px; }
-    form.tugas-form button{
-      background:var(--accent);
-      color:#fff;
-      border:none;
-      padding:9px 18px;
-      border-radius:4px;
-      font-size:13px;
-      font-weight:600;
-      cursor:pointer;
-    }
-    form.tugas-form button:hover{ background:var(--accent-dark); }
+  form.tugas-form{ display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; margin-bottom:18px; }
+  form.tugas-form .field{ display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--text-muted); }
+  form.tugas-form input, form.tugas-form select{
+    padding:8px 10px; border:1px solid var(--border); border-radius:4px;
+    font-size:13px; font-family:inherit; min-width:160px;
+  }
+  form.tugas-form input[type=text]{ min-width:220px; }
+  form.tugas-form button{
+    background:var(--accent); color:#fff; border:none; padding:9px 18px;
+    border-radius:4px; font-size:13px; font-weight:600; cursor:pointer;
+  }
+  form.tugas-form button:hover{ background:var(--accent-dark); }
+  form.tugas-form button:disabled{ opacity:.6; cursor:not-allowed; }
 
-    table.tugas-table{
-      border-collapse:collapse;
-      width:100%;
-      font-size:13px;
-    }
-    table.tugas-table th, table.tugas-table td{
-      border:1px solid var(--border);
-      padding:8px 10px;
-      text-align:left;
-    }
-    table.tugas-table th{
-      background:var(--navy-100);
-      color:var(--navy-900);
-      font-weight:600;
-      font-size:12px;
-      text-transform:uppercase;
-    }
-    .tag-jenis{
-      display:inline-block;
-      padding:2px 8px;
-      border-radius:3px;
-      font-size:12px;
-      font-weight:600;
-      background:var(--a-bg);
-      color:var(--a-text);
-    }
-    .btn-hapus{
-      background:none;
-      border:1px solid var(--red-strong);
-      color:var(--red-strong);
-      padding:4px 10px;
-      border-radius:4px;
-      font-size:12px;
-      cursor:pointer;
-    }
-    .btn-hapus:hover{ background:var(--red-bg); }
-
-    .empty-note{
-      color:var(--text-muted);
-      font-size:13px;
-      font-style:italic;
-    }
-    .hint{
-      font-size:12px;
-      color:var(--text-muted);
-      margin-top:8px;
-    }
-    .loading{
-      padding:40px;
-      text-align:center;
-      color:var(--text-muted);
-    }
-  </style>
+  table.tugas-table{ border-collapse:collapse; width:100%; font-size:13px; }
+  table.tugas-table th, table.tugas-table td{ border:1px solid var(--border); padding:8px 10px; text-align:left; }
+  table.tugas-table th{
+    background:var(--navy-100); color:var(--navy-900); font-weight:600; font-size:12px; text-transform:uppercase;
+  }
+  .tag-jenis{ display:inline-block; padding:2px 8px; border-radius:3px; font-size:12px; font-weight:600; background:var(--a-bg); color:var(--a-text); }
+  .btn-hapus{
+    background:none; border:1px solid var(--red-strong); color:var(--red-strong);
+    padding:4px 10px; border-radius:4px; font-size:12px; cursor:pointer;
+  }
+  .btn-hapus:hover{ background:var(--red-bg); }
+  .empty-note{ color:var(--text-muted); font-size:13px; font-style:italic; }
+  .hint{ font-size:12px; color:var(--text-muted); margin-top:8px; }
+  .loading{ padding:40px; text-align:center; color:var(--text-muted); }
+  .error-box{
+    background:var(--red-bg); color:var(--red-strong); border:1px solid var(--red-strong);
+    padding:14px; border-radius:4px; font-size:13px;
+  }
+  .setup-note{
+    background:#fff8e1; border:1px solid #f0c93b; color:#7a5c00;
+    padding:12px 16px; border-radius:4px; font-size:13px; margin-bottom:16px;
+  }
+</style>
 </head>
 <body>
 
-  <header class="topbar">
-    <h1>Kalender BDG026</h1>
-    <div class="subtitle" id="subtitleBulan">Memuat jadwal...</div>
-  </header>
+<header class="topbar">
+  <h1>Kalender BDG026</h1>
+  <div class="subtitle" id="subtitleBulan">Memuat jadwal...</div>
+</header>
 
-  <main>
+<main>
 
-    <div class="card">
-      <h2>Jadwal Shift</h2>
-      <div id="jadwalWrap" class="loading">Memuat data jadwal dari spreadsheet...</div>
-      <div class="hint">Klik pada tanggal di header untuk menandai / membatalkan tanggal merah (libur nasional).</div>
-    </div>
+  <div id="setupNote" class="setup-note" style="display:none;">
+    ⚠️ Belum diatur: isi <code>APPS_SCRIPT_URL</code> di bagian bawah file index.html dengan
+    URL Web App Apps Script kamu.
+  </div>
 
-    <div class="card">
-      <h2>Rekap Shift per Karyawan</h2>
-      <div id="rekapWrap" class="loading">Memuat rekap...</div>
-    </div>
+  <div class="card">
+    <h2>Jadwal Shift</h2>
+    <div id="jadwalWrap" class="loading">Memuat data jadwal dari spreadsheet...</div>
+    <div class="hint">Klik pada tanggal di header untuk menandai / membatalkan tanggal merah (libur nasional).</div>
+  </div>
 
-    <div class="card">
-      <h2>Tambah Tugas</h2>
-      <form class="tugas-form" id="formTugas">
-        <div class="field">
-          <label for="inpTanggal">Tanggal</label>
-          <input type="date" id="inpTanggal" required>
-        </div>
-        <div class="field">
-          <label for="inpJenis">Jenis</label>
-          <select id="inpJenis" required>
-            <option value="Kunjungan KC">Kunjungan KC</option>
-            <option value="Kunjungan Audit">Kunjungan Audit</option>
-            <option value="Tugas">Tugas</option>
-            <option value="Lainnya">Lainnya</option>
-          </select>
-        </div>
-        <div class="field" style="flex:1;">
-          <label for="inpKeterangan">Keterangan</label>
-          <input type="text" id="inpKeterangan" placeholder="Opsional">
-        </div>
-        <button type="submit">Tambah Tugas</button>
-      </form>
-      <div id="tugasWrap" class="loading">Memuat daftar tugas...</div>
-    </div>
+  <div class="card">
+    <h2>Rekap Shift per Karyawan</h2>
+    <div id="rekapWrap" class="loading">Memuat rekap...</div>
+  </div>
 
-  </main>
+  <div class="card">
+    <h2>Tambah Tugas</h2>
+    <form class="tugas-form" id="formTugas">
+      <div class="field">
+        <label for="inpTanggal">Tanggal</label>
+        <input type="date" id="inpTanggal" required>
+      </div>
+      <div class="field">
+        <label for="inpJenis">Jenis</label>
+        <select id="inpJenis" required>
+          <option value="Kunjungan KC">Kunjungan KC</option>
+          <option value="Kunjungan Audit">Kunjungan Audit</option>
+          <option value="Tugas">Tugas</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      <div class="field" style="flex:1;">
+        <label for="inpKeterangan">Keterangan</label>
+        <input type="text" id="inpKeterangan" placeholder="Opsional">
+      </div>
+      <button type="submit" id="btnSubmitTugas">Tambah Tugas</button>
+    </form>
+    <div id="tugasWrap" class="loading">Memuat daftar tugas...</div>
+  </div>
 
-  <script>
-    var NAMA_HARI = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
-    var NAMA_BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+</main>
 
-    var state = { jadwal: null, tugas: [], libur: [] };
+<script>
+  // =====================================================================
+  // WAJIB DIISI: tempel URL Web App hasil Deploy Google Apps Script di sini
+  // Contoh: 'https://script.google.com/macros/s/AKfycbx.../exec'
+  // =====================================================================
+  var APPS_SCRIPT_URL = 'GANTI_DENGAN_URL_APPS_SCRIPT_KAMU';
 
-    function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+  var NAMA_HARI = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+  var NAMA_BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
-    function dateStrFor(day){
-      return state.jadwal.tahun + '-' + pad2(state.jadwal.bulan) + '-' + pad2(day);
+  var state = { jadwal: null, tugas: [], libur: [] };
+
+  function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+  function dateStrFor(day){
+    return state.jadwal.tahun + '-' + pad2(state.jadwal.bulan) + '-' + pad2(day);
+  }
+  function escapeHtml(str){
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function checkSetup(){
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('GANTI_DENGAN') > -1) {
+      document.getElementById('setupNote').style.display = 'block';
+      return false;
     }
+    return true;
+  }
 
-    function loadAll(){
-      google.script.run.withSuccessHandler(function(data){
+  function loadAll(){
+    if (!checkSetup()) return;
+    fetch(APPS_SCRIPT_URL)
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data.error) { showError(data.error); return; }
         state.jadwal = data.jadwal;
         state.tugas = data.tugas;
         state.libur = data.libur;
@@ -326,121 +236,139 @@
         renderJadwal();
         renderRekap();
         renderTugas();
-      }).withFailureHandler(showError).getAllData();
-    }
+      })
+      .catch(function(err){ showError(err.message || err); });
+  }
 
-    function showError(err){
-      document.getElementById('jadwalWrap').innerHTML =
-        '<p style="color:#b3261e;">Gagal memuat data: ' + (err && err.message ? err.message : err) + '</p>';
-    }
+  function callAction(payload){
+    return fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      // pakai text/plain supaya browser tidak melakukan CORS preflight
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).then(function(res){ return res.json(); });
+  }
 
-    function renderSubtitle(){
-      document.getElementById('subtitleBulan').textContent =
-        NAMA_BULAN[state.jadwal.bulan - 1] + ' ' + state.jadwal.tahun;
-    }
+  function showError(msg){
+    document.getElementById('jadwalWrap').innerHTML =
+      '<div class="error-box">Gagal memuat data: ' + escapeHtml(msg) + '</div>';
+  }
 
-    function isLibur(day){
-      return state.libur.indexOf(dateStrFor(day)) > -1;
-    }
+  function renderSubtitle(){
+    document.getElementById('subtitleBulan').textContent =
+      NAMA_BULAN[state.jadwal.bulan - 1] + ' ' + state.jadwal.tahun;
+  }
 
-    function renderJadwal(){
-      var j = state.jadwal;
-      var html = '<div class="table-scroll"><table class="jadwal"><thead><tr>';
-      html += '<th>Nama</th><th>Jabatan</th>';
-      for (var d = 1; d <= j.numDays; d++){
-        var dow = new Date(j.tahun, j.bulan - 1, d).getDay();
-        var isSunday = (dow === 0);
-        var libur = isLibur(d);
-        var cls = (isSunday || libur) ? 'minggu' : '';
-        html += '<th class="' + cls + '" onclick="onToggleLibur(' + d + ')" title="Klik untuk toggle tanggal merah">' +
-                d + '<span class="hari">' + NAMA_HARI[dow] + '</span></th>';
+  function isLibur(day){
+    return state.libur.indexOf(dateStrFor(day)) > -1;
+  }
+
+  function renderJadwal(){
+    var j = state.jadwal;
+    var html = '<div class="table-scroll"><table class="jadwal"><thead><tr>';
+    html += '<th>Nama</th><th>Jabatan</th>';
+    for (var d = 1; d <= j.numDays; d++){
+      var dow = new Date(j.tahun, j.bulan - 1, d).getDay();
+      var isSunday = (dow === 0);
+      var libur = isLibur(d);
+      var cls = (isSunday || libur) ? 'minggu' : '';
+      html += '<th class="' + cls + '" onclick="onToggleLibur(' + d + ')" title="Klik untuk toggle tanggal merah">' +
+              d + '<span class="hari">' + NAMA_HARI[dow] + '</span></th>';
+    }
+    html += '</tr></thead><tbody>';
+
+    j.employees.forEach(function(emp){
+      html += '<tr><td class="nama-col">' + escapeHtml(emp.nama) + '</td><td class="jabatan-col">' + escapeHtml(emp.jabatan) + '</td>';
+      for (var d2 = 1; d2 <= j.numDays; d2++){
+        var shift = emp.shifts[d2-1] || '';
+        var dow2 = new Date(j.tahun, j.bulan - 1, d2).getDay();
+        var weekendCls = (dow2 === 0 || isLibur(d2)) ? 'weekend-red' : '';
+        var badge = shift ? '<span class="badge ' + shift.replace(/[^A-Z]/g,'') + '">' + shift + '</span>' : '';
+        html += '<td class="day-cell ' + weekendCls + '">' + badge + '</td>';
       }
-      html += '</tr></thead><tbody>';
+      html += '</tr>';
+    });
 
-      j.employees.forEach(function(emp){
-        html += '<tr><td class="nama-col">' + escapeHtml(emp.nama) + '</td><td class="jabatan-col">' + escapeHtml(emp.jabatan) + '</td>';
-        for (var d2 = 1; d2 <= j.numDays; d2++){
-          var shift = emp.shifts[d2-1] || '';
-          var dow2 = new Date(j.tahun, j.bulan - 1, d2).getDay();
-          var weekendCls = (dow2 === 0 || isLibur(d2)) ? 'weekend-red' : '';
-          var badge = shift ? '<span class="badge ' + shift.replace(/[^A-Z]/g,'') + '">' + shift + '</span>' : '';
-          html += '<td class="day-cell ' + weekendCls + '">' + badge + '</td>';
-        }
-        html += '</tr>';
-      });
+    html += '</tbody></table></div>';
+    document.getElementById('jadwalWrap').innerHTML = html;
+  }
 
-      html += '</tbody></table></div>';
-      document.getElementById('jadwalWrap').innerHTML = html;
+  function renderRekap(){
+    var j = state.jadwal;
+    var html = '<div class="rekap-grid">';
+    j.employees.forEach(function(emp){
+      var counts = { A:0, B:0, C:0, OFF:0 };
+      emp.shifts.forEach(function(s){ if (counts.hasOwnProperty(s)) counts[s]++; });
+      html += '<div class="rekap-item"><span class="nama">' + escapeHtml(emp.nama) + '</span>' +
+        '<span class="detail">' + counts.A + ' shift A, ' + counts.B + ' shift B, ' + counts.C + ' shift C, ' + counts.OFF + ' off</span></div>';
+    });
+    html += '</div>';
+    document.getElementById('rekapWrap').innerHTML = html;
+  }
+
+  function renderTugas(){
+    if (!state.tugas.length){
+      document.getElementById('tugasWrap').innerHTML = '<p class="empty-note">Belum ada tugas ditambahkan.</p>';
+      return;
     }
+    var html = '<table class="tugas-table"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th></th></tr></thead><tbody>';
+    state.tugas.forEach(function(t){
+      html += '<tr><td>' + escapeHtml(t.tanggal) + '</td>' +
+        '<td><span class="tag-jenis">' + escapeHtml(t.jenis) + '</span></td>' +
+        '<td>' + escapeHtml(t.keterangan || '-') + '</td>' +
+        '<td><button class="btn-hapus" onclick="onHapusTugas(' + t.row + ')">Hapus</button></td></tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById('tugasWrap').innerHTML = html;
+  }
 
-    function renderRekap(){
-      var j = state.jadwal;
-      var html = '<div class="rekap-grid">';
-      j.employees.forEach(function(emp){
-        var counts = { A:0, B:0, C:0, OFF:0 };
-        emp.shifts.forEach(function(s){
-          if (counts.hasOwnProperty(s)) counts[s]++;
-        });
-        html += '<div class="rekap-item"><span class="nama">' + escapeHtml(emp.nama) + '</span>' +
-          '<span class="detail">' + counts.A + ' shift A, ' + counts.B + ' shift B, ' + counts.C + ' shift C, ' + counts.OFF + ' off</span></div>';
-      });
-      html += '</div>';
-      document.getElementById('rekapWrap').innerHTML = html;
-    }
-
-    function renderTugas(){
-      if (!state.tugas.length){
-        document.getElementById('tugasWrap').innerHTML = '<p class="empty-note">Belum ada tugas ditambahkan.</p>';
-        return;
-      }
-      var html = '<table class="tugas-table"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th></th></tr></thead><tbody>';
-      state.tugas.forEach(function(t){
-        html += '<tr><td>' + escapeHtml(t.tanggal) + '</td>' +
-          '<td><span class="tag-jenis">' + escapeHtml(t.jenis) + '</span></td>' +
-          '<td>' + escapeHtml(t.keterangan || '-') + '</td>' +
-          '<td><button class="btn-hapus" onclick="onHapusTugas(' + t.row + ')">Hapus</button></td></tr>';
-      });
-      html += '</tbody></table>';
-      document.getElementById('tugasWrap').innerHTML = html;
-    }
-
-    function onToggleLibur(day){
-      var dateStr = dateStrFor(day);
-      google.script.run.withSuccessHandler(function(libur){
-        state.libur = libur;
+  function onToggleLibur(day){
+    if (!checkSetup()) return;
+    var dateStr = dateStrFor(day);
+    callAction({ action: 'toggleLibur', tanggal: dateStr })
+      .then(function(data){
+        state.jadwal = data.jadwal;
+        state.tugas = data.tugas;
+        state.libur = data.libur;
         renderJadwal();
-      }).withFailureHandler(showError).toggleLibur(dateStr);
-    }
+        renderRekap();
+      })
+      .catch(function(err){ alert('Gagal update: ' + err.message); });
+  }
 
-    function onHapusTugas(rowIndex){
-      google.script.run.withSuccessHandler(function(tugas){
-        state.tugas = tugas;
+  function onHapusTugas(rowIndex){
+    if (!checkSetup()) return;
+    callAction({ action: 'deleteTugas', row: rowIndex })
+      .then(function(data){
+        state.tugas = data.tugas;
         renderTugas();
-      }).withFailureHandler(showError).deleteTugas(rowIndex);
-    }
+      })
+      .catch(function(err){ alert('Gagal hapus: ' + err.message); });
+  }
 
-    document.getElementById('formTugas').addEventListener('submit', function(e){
-      e.preventDefault();
-      var tanggal = document.getElementById('inpTanggal').value;
-      var jenis = document.getElementById('inpJenis').value;
-      var keterangan = document.getElementById('inpKeterangan').value;
-      if (!tanggal){ alert('Tanggal wajib diisi.'); return; }
-      google.script.run.withSuccessHandler(function(tugas){
-        state.tugas = tugas;
+  document.getElementById('formTugas').addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!checkSetup()) return;
+    var tanggal = document.getElementById('inpTanggal').value;
+    var jenis = document.getElementById('inpJenis').value;
+    var keterangan = document.getElementById('inpKeterangan').value;
+    if (!tanggal){ alert('Tanggal wajib diisi.'); return; }
+
+    var btn = document.getElementById('btnSubmitTugas');
+    btn.disabled = true;
+    callAction({ action: 'addTugas', tanggal: tanggal, jenis: jenis, keterangan: keterangan })
+      .then(function(data){
+        state.tugas = data.tugas;
         renderTugas();
         document.getElementById('inpTanggal').value = '';
         document.getElementById('inpKeterangan').value = '';
-      }).withFailureHandler(showError).addTugas(tanggal, jenis, keterangan);
-    });
+      })
+      .catch(function(err){ alert('Gagal tambah tugas: ' + err.message); })
+      .finally(function(){ btn.disabled = false; });
+  });
 
-    function escapeHtml(str){
-      return String(str)
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;');
-    }
-
-    loadAll();
-  </script>
+  loadAll();
+</script>
 
 </body>
 </html>
