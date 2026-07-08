@@ -274,10 +274,43 @@
     return true;
   }
 
+  // ---------- JSONP helper (bypass CORS sepenuhnya lewat tag <script>) ----------
+  var jsonpCounter = 0;
+  function jsonpRequest(params){
+    return new Promise(function(resolve, reject){
+      var callbackName = 'jsonp_cb_' + (jsonpCounter++) + '_' + Date.now();
+      var query = Object.keys(params).map(function(k){
+        return encodeURIComponent(k) + '=' + encodeURIComponent(params[k] == null ? '' : params[k]);
+      }).join('&');
+
+      var script = document.createElement('script');
+      var timeoutId = setTimeout(function(){
+        cleanup();
+        reject(new Error('Waktu koneksi habis. Cek URL Apps Script / koneksi internet.'));
+      }, 15000);
+
+      function cleanup(){
+        clearTimeout(timeoutId);
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[callbackName] = function(data){
+        cleanup();
+        resolve(data);
+      };
+      script.onerror = function(){
+        cleanup();
+        reject(new Error('Gagal menghubungi Apps Script. Cek URL dan status Deploy.'));
+      };
+      script.src = APPS_SCRIPT_URL + (APPS_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?') + query + '&callback=' + callbackName;
+      document.body.appendChild(script);
+    });
+  }
+
   function loadAll(){
     if (!checkSetup()) return;
-    fetch(APPS_SCRIPT_URL)
-      .then(function(res){ return res.json(); })
+    jsonpRequest({})
       .then(function(data){
         if (data.error) { showError(data.error); return; }
         state.jadwal = data.jadwal;
@@ -292,11 +325,10 @@
   }
 
   function callAction(payload){
-    return fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // hindari CORS preflight
-      body: JSON.stringify(payload)
-    }).then(function(res){ return res.json(); });
+    return jsonpRequest(payload).then(function(data){
+      if (data.error) throw new Error(data.error);
+      return data;
+    });
   }
 
   function showError(msg){
